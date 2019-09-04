@@ -11,7 +11,7 @@ API Endpoints:-
 
 
 JWT Authentication:-
-use this in headers for authentication==> JWT [your token] 
+use this in headers for authentication==> JWT "your token" 
 
 
 Add your email id and password in settings.py before starting. Also change the Secret Key value.
