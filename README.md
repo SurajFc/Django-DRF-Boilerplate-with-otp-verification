@@ -2,7 +2,7 @@
 The is simple DRF boilerplate with user registeration features with otp verification 
 
 
-<h2>API Endpoints:- </h2>
+API Endpoints:-
 1. http://127.0.0.1:8000/register       #for Regiteration
 2. http://127.0.0.1:8000/verify         #verify OTP
 3. http://127.0.0.1:8000/login          #for Login also generate JSONWebToken    
