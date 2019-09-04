@@ -169,7 +169,7 @@ class ResetPasswordView(APIView):
 
 class LoginAPIView(APIView):
     permission_classes = (AllowAny,)
-    renderer_classes = (UserJSONRenderer,)
+#     renderer_classes = (UserJSONRenderer,)
     serializer_class = LoginSerializer
     queryset = MyUser.objects.all()
 
@@ -179,7 +179,10 @@ class LoginAPIView(APIView):
         print('email', email)
         filter_data = MyUser.objects.filter(email=email).values('is_active')
         print('filter_data', filter_data)
-        val = filter_data[0]['is_active']
+        if filter_data.exists() :  
+            val = filter_data[0]['is_active']
+        else:
+            return Response("Email is not Registered",status=status.HTTP_400_BAD_REQUEST)
 
         if val:
             if serializer.is_valid():
