@@ -17,7 +17,7 @@ from rest_framework_jwt.settings import api_settings
 #generating OTP
 def generateOTP():
     global totp
-    totp = pyotp.TOTP('base32secret3232',interval = 300) #set interval(time of the otp expiration) according to your need
+    totp = pyotp.TOTP('base32secret3232',interval = 300) #set interval(time of the otp expiration) according to your need in seconds.
     one_time = totp.now()
     return one_time
 
@@ -96,7 +96,7 @@ class ForgotPasswordView(APIView):
 
     def post(self, request):
         serializer = ForgotPasswordSerializer(data=request.data)
-
+        #Generating Random Password of specific Type or use according to your need
         str_1 = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
                  'U', 'V', 'W', 'X', 'Y', 'Z']
         str_2 = ['!', '@', '#', '$', '%', '&', '*', '/', '-', '+']
