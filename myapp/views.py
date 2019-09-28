@@ -136,7 +136,7 @@ class ForgotPasswordView(APIView):
 class ResetPasswordView(APIView):
     serializer_class = ResetPasswordSerializer
     queryset = MyUser.objects.all()
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAuthenticated,)
 
     def post(self, request):
         token1 = request.META['HTTP_AUTHORIZATION']
