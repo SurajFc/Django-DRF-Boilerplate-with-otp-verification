@@ -16,7 +16,7 @@ JSONEncoder.default = JSONEncoder_newdefault
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, first_name, last_name, password=None):
+    def create_user(self, email, first_name, last_name, password=None,**kwargs):
 
         if first_name is None:
             raise TypeError('Users must have a First Name')
@@ -26,7 +26,7 @@ class UserManager(BaseUserManager):
         if email is None:
             raise TypeError('Users must have an email address.')
 
-        user = self.model(first_name=first_name, last_name=last_name, email=self.normalize_email(email))
+        user = self.model(first_name=first_name, last_name=last_name, email=self.normalize_email(email),**kwargs)
         user.set_password(password)
         user.save()
 
