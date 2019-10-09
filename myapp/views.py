@@ -17,7 +17,8 @@ from rest_framework_jwt.settings import api_settings
 #generating OTP
 def generateOTP():
     global totp
-    totp = pyotp.TOTP('base32secret3232',interval = 300) #set interval(time of the otp expiration) according to your need in seconds.
+    secret = pyotp.random_base32()
+    totp = pyotp.TOTP(secret,interval = 300) #set interval(time of the otp expiration) according to your need in seconds.
     one_time = totp.now()
     return one_time
 
