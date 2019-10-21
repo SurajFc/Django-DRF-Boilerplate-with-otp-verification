@@ -11,7 +11,7 @@ from django.contrib.auth import authenticate
 from passlib.hash import django_pbkdf2_sha256 as handler
 from rest_framework_jwt.serializers import VerifyJSONWebTokenSerializer
 from django.core.exceptions import ValidationError
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework_jwt.settings import api_settings
 
 #generating OTP
