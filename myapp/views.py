@@ -13,6 +13,7 @@ from rest_framework_jwt.serializers import VerifyJSONWebTokenSerializer
 from django.core.exceptions import ValidationError
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework_jwt.settings import api_settings
+from django.contrib.auth.models import update_last_login
 
 #generating OTP
 def generateOTP():
@@ -188,6 +189,7 @@ class LoginAPIView(APIView):
         if val:
             if serializer.is_valid():
                 user = authenticate(username=request.data['email'], password=request.data['password'])
+                update_last_login(None,user) 
                 if user is not None and user.is_confirmed and user.is_active:  #change according to yourself
                     jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
                     jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
