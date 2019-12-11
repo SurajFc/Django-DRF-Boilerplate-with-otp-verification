@@ -7,12 +7,6 @@ from django.contrib.auth.models import (
 from django.db import models
 import uuid
 from uuid import UUID
-from json import JSONEncoder
-JSONEncoder_olddefault = JSONEncoder.default
-def JSONEncoder_newdefault(self, o):
-    if isinstance(o, UUID): return str(o)
-    return JSONEncoder_olddefault(self, o)
-JSONEncoder.default = JSONEncoder_newdefault
 
 
 class UserManager(BaseUserManager):
@@ -88,24 +82,8 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return "{}".format(self.user_id)
 
-    def __user_id__(self):
-        return self.user_id
-
     class Meta:
         db_table = 'MyUser'
         managed = True
 
-    @property
-    def token(self):
-        return self._generate_jwt_token()
-
-    def _generate_jwt_token(self):
-        dt = datetime.now() + timedelta(days=60)
-
-        token = jwt.encode({
-            'id': self.pk,
-            'exp': int(dt.strftime('%s'))
-        }, settings.SECRET_KEY, algorithm='HS256')
-
-        return token.decode('utf-8')
 
