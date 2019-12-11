@@ -5,7 +5,6 @@ import pyotp, random, jwt
 from django.conf import settings
 from django.core.mail import send_mail
 from .models import MyUser
-from .renderers import UserJSONRenderer
 from .serializers import LoginSerializer, RegistrationSerializer, VerifyOTPSerializer, ForgotPasswordSerializer, ResetPasswordSerializer
 from django.contrib.auth import authenticate
 from passlib.hash import django_pbkdf2_sha256 as handler
@@ -33,7 +32,7 @@ class RegistrationAPIView(APIView):
     queryset = MyUser.objects.all()
     permission_classes = (AllowAny,)
     serializer_class = RegistrationSerializer
-    renderer_classes = (UserJSONRenderer,)
+
 
     def get(self, request):
         return Response({'Status': 'You cannot view all users data.....'})
