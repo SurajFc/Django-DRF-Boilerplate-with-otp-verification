@@ -76,24 +76,24 @@ AUTH_USER_MODEL = 'myapp.MyUser'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-#for using Postgres
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'Your DB Name',
-#         'USER': 'Your DB User',
-#         'PASSWORD': 'Your DB Password',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
+
+# for using Postgres
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'fc',
+        'USER': 'fc',
+        'PASSWORD': 'Admin@123',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -122,7 +122,6 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -140,10 +139,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = "/media/"
 
-STATIC_ROOT = os.path.join(BASE_DIR,'static/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATIC_URL = '/static/'
 
 # Rest Framework Settings
@@ -155,37 +154,31 @@ REST_FRAMEWORK = {
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
 
     ),
-    #Used For Parsing
-    # 'DEFAULT_PARSER_CLASSES': (
-    #     'rest_framework.parsers.MultiPartParser',
-    #     'rest_framework.parsers.FormParser',
-    #     'rest_framework.parsers.JSONParser',
-    #     'rest_framework.parsers.FileUploadParser',
-    # ),
-    #
+
 }
 
-#JSONWebToken Settings
+# JSONWebToken Settings
 JWT_AUTH = {
-   'JWT_ENCODE_HANDLER':
-   'rest_framework_jwt.utils.jwt_encode_handler',
-   'JWT_DECODE_HANDLER':
-   'rest_framework_jwt.utils.jwt_decode_handler',
-   'JWT_PAYLOAD_HANDLER':
-   'rest_framework_jwt.utils.jwt_payload_handler',
-   'JWT_PAYLOAD_GET_USER_ID_HANDLER':
-   'rest_framework_jwt.utils.jwt_get_user_id_from_payload_handler',
-   'JWT_RESPONSE_PAYLOAD_HANDLER':
-   'rest_framework_jwt.utils.jwt_response_payload_handler',
-   'JWT_VERIFY': True,
-   'JWT_VERIFY_EXPIRATION': True,
-   'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=300), #Time for expiration of token
-   'JWT_AUTH_HEADER_PREFIX': 'JWT',
+    'JWT_ENCODE_HANDLER':
+    'rest_framework_jwt.utils.jwt_encode_handler',
+    'JWT_DECODE_HANDLER':
+    'rest_framework_jwt.utils.jwt_decode_handler',
+    'JWT_PAYLOAD_HANDLER':
+    'rest_framework_jwt.utils.jwt_payload_handler',
+    'JWT_PAYLOAD_GET_USER_ID_HANDLER':
+    'rest_framework_jwt.utils.jwt_get_user_id_from_payload_handler',
+    'JWT_RESPONSE_PAYLOAD_HANDLER':
+    'rest_framework_jwt.utils.jwt_response_payload_handler',
+    'JWT_VERIFY': True,
+    'JWT_VERIFY_EXPIRATION': True,
+    # Time for expiration of token
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=300),
+    'JWT_AUTH_HEADER_PREFIX': 'JWT',
 }
 
 
 # CORS settings for CROSS ORIGIN RESOURCE SHARING
-#It is used with frontend framework like Angular , Vue and others
+# It is used with frontend framework like Angular , Vue and others
 # CORS_ORIGIN_ALLOW_ALL = True
 # CORS_ALLOW_CREDENTIALS = True
 # CORS_ORIGIN_WHITELIST = (
