@@ -63,6 +63,7 @@ class RegistrationAPIView(APIView):
                 email_from = settings.EMAIL_HOST_USER
                 recipient_list = [email]
                 message = message
+                subject = "OTP" 
                 send_mail(
                     subject,
                     message,
